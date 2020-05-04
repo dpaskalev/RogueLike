@@ -36,9 +36,9 @@ public class BoardManager : MonoBehaviour
     {
         gridPositions.Clear();
 
-        for (int x = 0; x < columns - 1; x++)
+        for (int x = 1; x < columns - 1; x++)
         {
-            for (int y = 0; y < rows - 1; y++)
+            for (int y = 1; y < rows - 1; y++)
             {
                 gridPositions.Add(new Vector3(x, y, 0f));
             }
@@ -49,9 +49,9 @@ public class BoardManager : MonoBehaviour
     {
         boardHolder = new GameObject("Board").transform;
 
-        for (int x = -1; x < columns; x++)
+        for (int x = -1; x < columns + 1; x++)
         {
-            for (int y = -1; y < rows; y++)
+            for (int y = -1; y < rows + 1; y++)
             {
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
                 if (x == -1 || x == columns || y == -1 || y == rows)
@@ -76,7 +76,7 @@ public class BoardManager : MonoBehaviour
 
     void LayoutObjectAtRandom(GameObject[] tileArray, int minimum, int maximum)
     {
-        int objectCount = Random.Range(minimum, maximum - 1);
+        int objectCount = Random.Range(minimum, maximum + 1);
 
         for (int i = 0; i < objectCount; i++)
         {

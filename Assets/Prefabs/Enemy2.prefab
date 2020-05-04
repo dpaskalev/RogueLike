@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1339946768108566534}
   - component: {fileID: 1339946768108566533}
   - component: {fileID: 4124014997845039557}
+  - component: {fileID: 25099367126057696}
   m_Layer: 8
   m_Name: Enemy2
   m_TagString: Enemy
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1877155579
-  m_SortingLayer: 1
+  m_SortingLayerID: 2095102657
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -150,3 +151,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &25099367126057696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339946768108566529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e290ea31f72048949c4f97231d3c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0.1
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerDamage: 20
+  enemyAttak1: {fileID: 0}
+  enemyAttak2: {fileID: 0}
