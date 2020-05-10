@@ -41,11 +41,11 @@ public class Enemy : MoovingObject
 
         if (Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon)
         {
-            yDir = target.position.y > transform.position.y ? 1 : -1;
+            yDir = target.position.y > transform.position.y ? 0 : 0;// 1 : -1;
         }
         else
         {
-            xDir = target.position.x > transform.position.x ? 1 : -1;
+            xDir = target.position.x > transform.position.x ? 0 : 0;//1 : -1;
         }
 
         AttemptMove<Player>(xDir, yDir);
