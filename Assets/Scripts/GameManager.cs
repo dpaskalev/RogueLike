@@ -51,29 +51,29 @@ public class GameManager : MonoBehaviour
         boardScript.SetupScene(level);
     }
 
-    //private void OnLevelWasLoaded(int index)
-    //{
-    //    level++;
+    private void OnLevelWasLoaded(int index)
+    {
+        level++;
 
-    //    InitGame();
+        InitGame();
+    }
+
+    //void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnLevelFinishedLoading;
     //}
 
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-    }
+    //void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    //}
 
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-    }
-
-    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Level Loaded");
-        Debug.Log(scene.name);
-        Debug.Log(mode);
-    }
+    //void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log("Level Loaded");
+    //    Debug.Log(scene.name);
+    //    Debug.Log(mode);
+    //}
 
     private void HideLevelImage()
     {
