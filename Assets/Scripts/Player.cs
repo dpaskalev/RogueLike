@@ -105,6 +105,11 @@ public class Player : MoovingObject
             SoundManager.instance.RandomizeSfx(drinkSound1, drinkSound2);
             other.gameObject.SetActive(false);
         }
+        //else if (other.tag == "Enemy")
+        //{
+        //    //GameManager.instance.enemyes.MoveEnemy();
+        //    //other.gameObject.SetActive(false);
+        //}
     }
 
     protected override void OnCantMove<T> (T component)

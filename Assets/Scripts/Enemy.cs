@@ -8,7 +8,7 @@ public class Enemy : MoovingObject
 
     private Animator animator;
     private Transform target;
-    private bool skipMove;
+    //private bool skipMove;
     public AudioClip enemyAttak1;
     public AudioClip enemyAttak2;
 
@@ -23,15 +23,15 @@ public class Enemy : MoovingObject
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        if (skipMove)
-        {
-            skipMove = false;
-            return;
-        }
+        //if (skipMove)
+        //{
+        //    //skipMove = false;
+        //    return;
+        //}
 
         base.AttemptMove<T>(xDir, yDir);
 
-        skipMove = true;
+        //skipMove = true;
     }
 
     public void MoveEnemy()
@@ -60,5 +60,7 @@ public class Enemy : MoovingObject
         hitPlayer.LoseFood(playerDamage);
 
         SoundManager.instance.RandomizeSfx(enemyAttak1, enemyAttak2);
+
+        this.gameObject.SetActive(false);
     }
 }

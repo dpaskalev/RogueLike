@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
     public int playerFoodPoints = 100;
     [HideInInspector] public bool playersTurn = true;
 
+    public List<Enemy> enemyes;
     private Text levelText;
     private GameObject levelImage;
     private int level = 1;
-    private List<Enemy> enemyes;
     private bool enemiesMoving;
     private bool doingSetup;
 
@@ -116,7 +116,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < enemyes.Count; i++)
         {
-            enemyes[i].MoveEnemy();
+            if (enemyes[i].gameObject.activeSelf)
+            {
+                enemyes[i].MoveEnemy();
+            }
+            
             yield return new WaitForSeconds(enemyes[i].moveTime);
         }
 
