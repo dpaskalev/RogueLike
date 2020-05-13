@@ -2,65 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MoovingObject
+public class Enemy : MonoBehaviour
 {
     public int playerDamage;
 
     private Animator animator;
-    private Transform target;
+    private BoxCollider2D boxCollider;
+    private Rigidbody2D rb2D;
+
     //private bool skipMove;
     public AudioClip enemyAttak1;
     public AudioClip enemyAttak2;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected virtual void Start()
     {
         GameManager.instance.AddEnemyToList(this);
         animator = GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        base.Start();
-    }
 
-    protected override void AttemptMove<T>(int xDir, int yDir)
-    {
-        //if (skipMove)
-        //{
-        //    //skipMove = false;
-        //    return;
-        //}
-
-        base.AttemptMove<T>(xDir, yDir);
-
-        //skipMove = true;
-    }
-
-    public void MoveEnemy()
-    {
-        int xDir = 0;
-        int yDir = 0;
-
-        if (Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon)
-        {
-            yDir = target.position.y > transform.position.y ? 0 : 0;// 1 : -1;
-        }
-        else
-        {
-            xDir = target.position.x > transform.position.x ? 0 : 0;//1 : -1;
-        }
-
-        AttemptMove<Player>(xDir, yDir);
-    }
-
-    protected override void OnCantMove<T> (T component)
-    {
-        Player hitPlayer = component as Player;
-
-        animator.SetTrigger("Enemy1Attak");
-
-        hitPlayer.LoseFood(playerDamage);
-
-        SoundManager.instance.RandomizeSfx(enemyAttak1, enemyAttak2);
-
-        this.gameObject.SetActive(false);
+        boxCollider = GetComponent<BoxCollider2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 }

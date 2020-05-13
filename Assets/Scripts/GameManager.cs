@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
     public float levelStartDelay = 2f;
     public float turnDelay = .1f;
-    public static GameManager instance = null;
     public BoardManager boardScript;
     public int playerFoodPoints = 100;
     [HideInInspector] public bool playersTurn = true;
@@ -107,23 +107,9 @@ public class GameManager : MonoBehaviour
     IEnumerator MoveEnemies()
     {
         enemiesMoving = true;
-        yield return new WaitForSeconds(turnDelay);
 
-        if (enemyes.Count == 0)
-        {
-            yield return new WaitForSeconds(turnDelay);
-        }
-
-        for (int i = 0; i < enemyes.Count; i++)
-        {
-            if (enemyes[i].gameObject.activeSelf)
-            {
-                enemyes[i].MoveEnemy();
-            }
-            
-            yield return new WaitForSeconds(enemyes[i].moveTime);
-        }
-
+        yield return new WaitForSeconds(2 * turnDelay);
+        
         playersTurn = true;
         enemiesMoving = false;
     }

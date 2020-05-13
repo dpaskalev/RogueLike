@@ -30,7 +30,7 @@ public class Player : MoovingObject
 
         food = GameManager.instance.playerFoodPoints;
 
-        foodText.text = "Food: " + food;
+        foodText.text = "HP: " + food;
 
         base.Start();
     }
@@ -67,8 +67,7 @@ public class Player : MoovingObject
 
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
-        food--;
-        foodText.text = "Food: " + food;
+        foodText.text = "HP: " + food;
 
         base.AttemptMove<T>(xDir, yDir);
 
@@ -94,22 +93,23 @@ public class Player : MoovingObject
         else if (other.tag == "Food")
         {
             food += pointsPerFood;
-            foodText.text = "+" + pointsPerFood + " Food: " + food;
+            foodText.text = "+" + pointsPerFood + " HP: " + food;
             SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
             other.gameObject.SetActive(false);
         }
         else if (other.tag == "Soda")
         {
             food += pointsPerSoda;
-            foodText.text = "+" + pointsPerFood + " Food: " + food;
+            foodText.text = "+" + pointsPerFood + " HP: " + food;
             SoundManager.instance.RandomizeSfx(drinkSound1, drinkSound2);
             other.gameObject.SetActive(false);
         }
-        //else if (other.tag == "Enemy")
-        //{
-        //    //GameManager.instance.enemyes.MoveEnemy();
-        //    //other.gameObject.SetActive(false);
-        //}
+        else if (other.tag == "Enemy")
+        {
+            LoseFood(other.gameObject.GetComponent<Enemy>().playerDamage);
+            SoundManager.instance.RandomizeSfx(other.gameObject.GetComponent<Enemy>().enemyAttak1, other.gameObject.GetComponent<Enemy>().enemyAttak2);
+            other.gameObject.SetActive(false);
+        }
     }
 
     protected override void OnCantMove<T> (T component)
@@ -128,7 +128,7 @@ public class Player : MoovingObject
     {
         animator.SetTrigger("playerHit");
         food -= loss;
-        foodText.text = "-" + loss + " Food: " + food;
+        foodText.text = "-" + loss + " HP: " + food;
         CheckIfGameOver();
     }
 
