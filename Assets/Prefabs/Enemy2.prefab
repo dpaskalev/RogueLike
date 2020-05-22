@@ -163,6 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87e290ea31f72048949c4f97231d3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 20
+  playerDamage: 50
   enemyAttak1: {fileID: 8300000, guid: 0db8cac2749584a009540aa5671ee80d, type: 3}
   enemyAttak2: {fileID: 8300000, guid: 114514a3b3697484ebaa08f7fbf842d3, type: 3}

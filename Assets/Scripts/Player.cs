@@ -6,22 +6,16 @@ using UnityEngine.UI;
 
 public class Player : MoovingObject
 {
-
     public int wallDamage = 1;
-    public int pointsPerFood = 10;
-    public int pointsPerSoda = 20;
     public float restartLevelDelay = 1f;
     public Text foodText;
     public AudioClip moveSound1;
     public AudioClip moveSound2;
-    public AudioClip eatSound1;
-    public AudioClip eatSound2;
-    public AudioClip drinkSound1;
-    public AudioClip drinkSound2;
     public AudioClip gameOverSound;
 
     private Animator animator;
     private int food;
+    private List<AudioClip> ObjectSound;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -90,24 +84,20 @@ public class Player : MoovingObject
             Invoke("Restart", restartLevelDelay);
             enabled = false;
         }
-        else if (other.tag == "Food")
+        else if (other.tag == "Soda" || other.tag == "Food")
         {
-            food += pointsPerFood;
-            foodText.text = "+" + pointsPerFood + " HP: " + food;
-            SoundManager.instance.RandomizeSfx(eatSound1, eatSound2);
-            other.gameObject.SetActive(false);
-        }
-        else if (other.tag == "Soda")
-        {
-            food += pointsPerSoda;
-            foodText.text = "+" + pointsPerFood + " HP: " + food;
-            SoundManager.instance.RandomizeSfx(drinkSound1, drinkSound2);
+            ObjectSound = new List<AudioClip>(GetObjectSounds(other));
+            int value = other.gameObject.GetComponent<IReturnValue>().ValuePoints;
+
+            food += value;
+            foodText.text = "+" + value + " HP: " + food;
+            SoundManager.instance.RandomizeSfx(ObjectSound[0], ObjectSound[1]);
             other.gameObject.SetActive(false);
         }
         else if (other.tag == "Enemy")
         {
-            LoseFood(other.gameObject.GetComponent<Enemy>().playerDamage);
-            SoundManager.instance.RandomizeSfx(other.gameObject.GetComponent<Enemy>().enemyAttak1, other.gameObject.GetComponent<Enemy>().enemyAttak2);
+            LoseFood(other.gameObject.GetComponent<Enemy>().PlayerDamage);
+            SoundManager.instance.RandomizeSfx(other.gameObject.GetComponent<Enemy>().EnemyAttak1, other.gameObject.GetComponent<Enemy>().EnemyAttak2);
             other.gameObject.SetActive(false);
         }
     }
@@ -117,6 +107,17 @@ public class Player : MoovingObject
         Wall hitWall = component as Wall;
         hitWall.DamageWall(wallDamage);
         animator.SetTrigger("playerChop");
+    }
+
+    private List<AudioClip> GetObjectSounds(Collider2D other)
+    {
+        List<AudioClip> audio = new List<AudioClip>()
+        {
+            other.gameObject.GetComponent<IReturnValue>().Sound1,
+            other.gameObject.GetComponent<IReturnValue>().Sound2
+        };
+
+        return audio;
     }
 
     private void Restart()

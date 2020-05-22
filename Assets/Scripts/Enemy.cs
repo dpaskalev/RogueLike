@@ -4,16 +4,37 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int playerDamage;
+    [SerializeField]
+    private int playerDamage;
+
+    public int PlayerDamage
+    {
+        get { return playerDamage; }
+        private set { playerDamage = value; }
+    }
+
+    [SerializeField]
+    private AudioClip enemyAttak1;
+
+    public AudioClip EnemyAttak1
+    {
+        get { return enemyAttak1; }
+        private set { enemyAttak1 = value; }
+    }
+
+    [SerializeField]
+    private AudioClip enemyAttak2;
+
+    public AudioClip EnemyAttak2
+    {
+        get { return enemyAttak2; }
+        private set { enemyAttak2 = value; }
+    }
 
     private Animator animator;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2D;
-
-    //private bool skipMove;
-    public AudioClip enemyAttak1;
-    public AudioClip enemyAttak2;
-
+    
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -23,4 +44,6 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
     }
+
+
 }
