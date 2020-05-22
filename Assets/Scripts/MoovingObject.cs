@@ -4,7 +4,15 @@ using UnityEngine;
 
 public abstract class MoovingObject : MonoBehaviour
 {
-    public float moveTime = .1f;
+    //public float moveTime = .1f;
+    private float moveTime = .1f;
+
+    public float MoveTime
+    {
+        get { return moveTime; }
+        private set { moveTime = value; }
+    }
+
     public LayerMask blockingLayer;
 
     private BoxCollider2D boxCollider;

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Loader : MonoBehaviour
 {
-    public GameObject gameManager;
+    [SerializeField]
+    private GameObject gameManager;
+
+    public GameObject GameManagerProperty
+    {
+        get { return gameManager; }
+        private set { gameManager = value; }
+    }
 
     void Awake()
     {
