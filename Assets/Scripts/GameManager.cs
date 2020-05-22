@@ -6,19 +6,70 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
-    public float levelStartDelay = 2f;
-    public float turnDelay = .1f;
-    public BoardManager boardScript;
-    public int playerFoodPoints = 100;
-    [HideInInspector] public bool playersTurn = true;
+    private static GameManager instance = null;
 
-    public List<Enemy> enemyes;
+    [SerializeField]
+    private float levelStartDelay;
+
+    public float LevelStartDelay
+    {
+        get { return levelStartDelay; }
+        private set { levelStartDelay = value; }
+    }
+
+    [SerializeField]
+    private float turnDelay;
+
+    public float TurnDelay
+    {
+        get { return turnDelay; }
+        private set { turnDelay = value; }
+    }
+
+    [SerializeField]
+    private BoardManager boardScript;
+
+    public BoardManager BoardScript
+    {
+        get { return boardScript; }
+        private set { boardScript = value; }
+    }
+
+    [SerializeField]
+    private int playerFoodPoints;
+
+    public int PlayerFoodPoints
+    {
+        get { return playerFoodPoints; }
+        set { playerFoodPoints = value; }
+    }
+
+    private bool playersTurn;
+
+    public bool PlayersTurn
+    {
+        get { return playersTurn; }
+        set { playersTurn = value; }
+    }
+
+    [SerializeField]
+    private List<Enemy> enemyes;
+
     private Text levelText;
     private GameObject levelImage;
     private int level = 1;
     private bool enemiesMoving;
     private bool doingSetup;
+
+    public static GameManager GetInstance()
+    {
+        return instance;
+    }
+
+    public List<Enemy> GetEnemies()
+    {
+        return enemyes;
+    }
 
     private void Awake()
     {

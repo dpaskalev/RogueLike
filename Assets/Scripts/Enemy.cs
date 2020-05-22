@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        GameManager.instance.AddEnemyToList(this);
+        GameManager.GetInstance().AddEnemyToList(this);
         animator = GetComponent<Animator>();
 
         boxCollider = GetComponent<BoxCollider2D>();
