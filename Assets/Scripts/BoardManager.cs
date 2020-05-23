@@ -58,16 +58,28 @@ public class BoardManager : MonoBehaviour
     
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
+    private int spawnedFood = 0;
 
     void InitialiseList()
     {
         gridPositions.Clear();
 
-        for (int x = 1; x < columns - 1; x++)
+        for (int x = 0; x < columns /*- 1*/; x++)
         {
-            for (int y = 1; y < rows - 1; y++)
+            for (int y = 0; y < rows /*- 1*/; y++)
             {
-                gridPositions.Add(new Vector3(x, y, 0f));
+                if (x == 0 && y == 0)
+                {
+                    continue;
+                }
+                if (x == columns - 1 && y == rows - 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    gridPositions.Add(new Vector3(x, y, 0f));
+                }
             }
         }
     }
@@ -104,6 +116,7 @@ public class BoardManager : MonoBehaviour
     void LayoutObjectAtRandom(List<GameObject> tileArray, int minimum, int maximum)
     {
         int objectCount = Random.Range(minimum, maximum + 1);
+        spawnedFood = objectCount;
 
         for (int i = 0; i < objectCount; i++)
         {
@@ -118,7 +131,7 @@ public class BoardManager : MonoBehaviour
         BoardSetup();
         InitialiseList();
         LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
-        int enemyCount = (int)Mathf.Log(level, 2f);
+        int enemyCount = 62 - spawnedFood;
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }

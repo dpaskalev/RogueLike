@@ -81,5 +81,5 @@ MonoBehaviour:
   levelStartDelay: 2
   turnDelay: 0.13
   boardScript: {fileID: 0}
-  playerFoodPoints: 100
+  playerFoodPoints: 100000
   enemyes: []
