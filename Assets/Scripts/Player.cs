@@ -6,12 +6,60 @@ using UnityEngine.UI;
 
 public class Player : MoovingObject
 {
-    public int wallDamage = 1;
-    public float restartLevelDelay = 1f;
-    public Text foodText;
-    public AudioClip moveSound1;
-    public AudioClip moveSound2;
-    public AudioClip gameOverSound;
+    [SerializeField]
+    private int wallDamage;
+
+    public int WallDamage
+    {
+        get { return wallDamage; }
+        private set { wallDamage = value; }
+    }
+
+    //public float restartLevelDelay = 1f;
+    [SerializeField]
+    private float restartLevelDelay;
+
+    public float RestartLevelDelay
+    {
+        get { return restartLevelDelay; }
+        private set { restartLevelDelay = value; }
+    }
+
+    [SerializeField]
+    private Text foodText;
+
+    public Text FoodText
+    {
+        get { return foodText; }
+        private set { foodText = value; }
+    }
+
+    [SerializeField]
+    private AudioClip moveSound1;
+
+    public AudioClip MoveSound1
+    {
+        get { return moveSound1; }
+        private set { moveSound1 = value; }
+    }
+
+    [SerializeField]
+    private AudioClip moveSound2;
+
+    public AudioClip MoveSound2
+    {
+        get { return moveSound2; }
+        private set { moveSound2 = value; }
+    }
+
+    [SerializeField]
+    private AudioClip gameOverSound;
+
+    public AudioClip GameOverSound
+    {
+        get { return gameOverSound; }
+        private set { gameOverSound = value; }
+    }
 
     private Animator animator;
     private int food;
