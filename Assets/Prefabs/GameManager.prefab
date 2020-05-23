@@ -46,12 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 8
   rows: 8
-  wallCount:
-    maximum: 9
-    minimum: 5
-  foodCount:
-    maximum: 5
-    minimum: 1
   exit: {fileID: 4558015437458492762, guid: 1f9aaff74ff2e234cbc56b0b3ca7eed7, type: 3}
   floorTiles:
   - {fileID: 1332099680261190304, guid: ec6dd4e79037f6541b67cd360db6f7db, type: 3}
@@ -62,15 +56,6 @@ MonoBehaviour:
   - {fileID: 2762546571259618040, guid: f540af2db3333be42a7264f4791d7eae, type: 3}
   - {fileID: 3437045038544820194, guid: b7705524e16759548ab41004502b4df1, type: 3}
   - {fileID: 8548223665039638256, guid: 3176192db3025f14ebe861c38c585d5d, type: 3}
-  wallTiles:
-  - {fileID: 7479944107113104854, guid: 737141a57035bde46b85d83b98264d56, type: 3}
-  - {fileID: 3342298814151976054, guid: c213e6ef4268c4c43bc971e821499f51, type: 3}
-  - {fileID: 810722406066322259, guid: 94dd8697762a74f4aa470229e7c32413, type: 3}
-  - {fileID: 1953548587548341083, guid: 2a2d6e4e30fcef04489e3e7152ffb780, type: 3}
-  - {fileID: 5855166974799206493, guid: c11934698e5535a4784064a2b8cd2a44, type: 3}
-  - {fileID: 7576780789617730742, guid: 8a46830ab5c7e124db62d3d581e9a58a, type: 3}
-  - {fileID: 5240581733095017919, guid: 953d6091e6d874b46b85df5f398c0e3e, type: 3}
-  - {fileID: 5146330184995092016, guid: 167f8ce3c6e696847be41135c448b75a, type: 3}
   foodTiles:
   - {fileID: 4298115856520660342, guid: 7faec3c24239b0b4c8ed86939c0403e3, type: 3}
   - {fileID: 6830168467798819466, guid: 2301ef360edebde44994ff26b2519322, type: 3}
@@ -93,4 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71cd50dbabd3974a9ea3ed33c6d23ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelStartDelay: 2
+  turnDelay: 0.09
   boardScript: {fileID: 0}
+  playerFoodPoints: 100
+  enemyes: []
