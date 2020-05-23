@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelStartDelay: 2
-  turnDelay: 0.09
+  turnDelay: 0.13
   boardScript: {fileID: 0}
   playerFoodPoints: 100
   enemyes: []

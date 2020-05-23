@@ -117,7 +117,7 @@ public class Player : MoovingObject
 
         if (Move(xDir,yDir,out hit))
         {
-            SoundManager.instance.RandomizeSfx(moveSound1, moveSound2);
+            SoundManager.GetInstance().RandomizeSfx(moveSound1, moveSound2);
         }
 
         CheckIfGameOver();
@@ -139,13 +139,13 @@ public class Player : MoovingObject
 
             food += value;
             foodText.text = "+" + value + " HP: " + food;
-            SoundManager.instance.RandomizeSfx(ObjectSound[0], ObjectSound[1]);
+            SoundManager.GetInstance().RandomizeSfx(ObjectSound[0], ObjectSound[1]);
             other.gameObject.SetActive(false);
         }
         else if (other.tag == "Enemy")
         {
             LoseFood(other.gameObject.GetComponent<Enemy>().PlayerDamage);
-            SoundManager.instance.RandomizeSfx(other.gameObject.GetComponent<Enemy>().EnemyAttak1, other.gameObject.GetComponent<Enemy>().EnemyAttak2);
+            SoundManager.GetInstance().RandomizeSfx(other.gameObject.GetComponent<Enemy>().EnemyAttak1, other.gameObject.GetComponent<Enemy>().EnemyAttak2);
             other.gameObject.SetActive(false);
         }
     }
@@ -185,8 +185,8 @@ public class Player : MoovingObject
     {
         if (food <= 0)
         {
-            SoundManager.instance.PlaySingle(gameOverSound);
-            SoundManager.instance.musicSource.Stop();
+            SoundManager.GetInstance().PlaySingle(gameOverSound);
+            SoundManager.GetInstance().musicSource.Stop();
             GameManager.GetInstance().GameOver();
         }
     }
