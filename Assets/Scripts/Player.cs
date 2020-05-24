@@ -132,7 +132,7 @@ public class Player : MoovingObject
             Invoke("Restart", restartLevelDelay);
             enabled = false;
         }
-        else if (other.tag == "Soda" || other.tag == "Food")
+        else if (other.tag == "Food")
         {
             ObjectSound = new List<AudioClip>(GetObjectSounds(other));
             int value = other.gameObject.GetComponent<IReturnValue>().ValuePoints;
