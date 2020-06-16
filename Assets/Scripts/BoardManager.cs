@@ -64,15 +64,11 @@ public class BoardManager : MonoBehaviour
     {
         gridPositions.Clear();
 
-        for (int x = 0; x < columns /*- 1*/; x++)
+        for (int x = 0; x < columns; x++)
         {
-            for (int y = 0; y < rows /*- 1*/; y++)
+            for (int y = 0; y < rows; y++)
             {
-                if (x == 0 && y == 0)
-                {
-                    continue;
-                }
-                if (x == columns - 1 && y == rows - 1)
+                if ((x == 0 && y == 0) || (x == columns - 1 && y == rows - 1))
                 {
                     continue;
                 }
