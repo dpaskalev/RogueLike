@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class MoovingObject : MonoBehaviour
 {
-    //public float moveTime = .1f;
     private float moveTime = .1f;
 
     public float MoveTime
@@ -19,7 +18,6 @@ public abstract class MoovingObject : MonoBehaviour
     private Rigidbody2D rb2D;
     private float inverseMoveTime;
 
-    // Start is called before the first frame update
     protected virtual void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -80,7 +78,6 @@ public abstract class MoovingObject : MonoBehaviour
     protected abstract void OnCantMove<T>(T component)
         where T : Component;
 
-    // Update is called once per frame
     void Update()
     {
         

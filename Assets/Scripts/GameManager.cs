@@ -109,23 +109,6 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-    //void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += OnLevelFinishedLoading;
-    //}
-
-    //void OnDisable()
-    //{
-    //    SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-    //}
-
-    //void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    //{
-    //    Debug.Log("Level Loaded");
-    //    Debug.Log(scene.name);
-    //    Debug.Log(mode);
-    //}
-
     private void HideLevelImage()
     {
         levelImage.SetActive(false);
@@ -139,7 +122,6 @@ public class GameManager : MonoBehaviour
         enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (playersTurn || enemiesMoving || doingSetup)

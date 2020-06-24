@@ -5,19 +5,6 @@ using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour
 {
-    [Serializable]
-    public class Count
-    {
-        public int maximum;
-        public int minimum;
-
-        public Count(int min, int max)
-        {
-            minimum = min;
-            maximum = max;
-        }
-    }
-
     [SerializeField]
     private int columns;
 
@@ -36,7 +23,11 @@ public class BoardManager : MonoBehaviour
         private set { rows = value; }
     }
 
-    private Count foodCount = new Count(1, 10);
+    [SerializeField]
+    int foodMin = 1;
+
+    [SerializeField]
+    int foodMax = 10;
 
     [SerializeField]
     private GameObject exit;
@@ -126,15 +117,9 @@ public class BoardManager : MonoBehaviour
     {
         BoardSetup();
         InitialiseList();
-        LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
+        LayoutObjectAtRandom(foodTiles, foodMin, foodMax);
         int enemyCount = 62 - spawnedFood;
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }
-
-    public Count GetFoodCount()
-    {
-        return foodCount;
-    }
-
 }

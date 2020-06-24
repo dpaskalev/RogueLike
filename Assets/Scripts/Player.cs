@@ -15,7 +15,6 @@ public class Player : MoovingObject
         private set { wallDamage = value; }
     }
 
-    //public float restartLevelDelay = 1f;
     [SerializeField]
     private float restartLevelDelay;
 
@@ -65,7 +64,6 @@ public class Player : MoovingObject
     private int food;
     private List<AudioClip> ObjectSound;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         animator = GetComponent<Animator>();
@@ -82,7 +80,6 @@ public class Player : MoovingObject
         GameManager.GetInstance().PlayerFoodPoints = food;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameManager.GetInstance().PlayersTurn == false)

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 8
   rows: 8
+  foodMin: 1
+  foodMax: 10
   exit: {fileID: 4558015437458492762, guid: 1f9aaff74ff2e234cbc56b0b3ca7eed7, type: 3}
   floorTiles:
   - {fileID: 1332099680261190304, guid: ec6dd4e79037f6541b67cd360db6f7db, type: 3}
