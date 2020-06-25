@@ -118,7 +118,7 @@ public class BoardManager : MonoBehaviour
         BoardSetup();
         InitialiseList();
         LayoutObjectAtRandom(foodTiles, foodMin, foodMax);
-        int enemyCount = 62 - spawnedFood;
+        int enemyCount = ((columns * rows) - 2) - spawnedFood;
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
     }
