@@ -23,8 +23,8 @@ public class BoardManager : MonoBehaviour
         private set { rows = value; }
     }
 
-    [SerializeField]
-    int foodMin = 1;
+    //[SerializeField]
+    //int foodMin = 1;
 
     [SerializeField]
     int foodMax = 10;
@@ -46,30 +46,10 @@ public class BoardManager : MonoBehaviour
     private List<GameObject> enemyTiles = new List<GameObject>();
     [SerializeField]
     private List<GameObject> outerWallTiles = new List<GameObject>();
+
+    private List<Vector3> foodLocations = new List<Vector3>();
     
     private Transform boardHolder;
-    private List<Vector3> gridPositions = new List<Vector3>();
-    private int spawnedFood = 0;
-
-    void InitialiseList()
-    {
-        gridPositions.Clear();
-
-        for (int x = 0; x < columns; x++)
-        {
-            for (int y = 0; y < rows; y++)
-            {
-                if ((x == 0 && y == 0) || (x == columns - 1 && y == rows - 1))
-                {
-                    continue;
-                }
-                else
-                {
-                    gridPositions.Add(new Vector3(x, y, 0f));
-                }
-            }
-        }
-    }
 
     void BoardSetup()
     {
@@ -92,34 +72,67 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    Vector3 RandomPosition()
+    void LayoutEnemies(List<GameObject> enemyTiles, List<Vector3> foodLocations)
     {
-        int randomIndex = Random.Range(0, gridPositions.Count);
-        Vector3 randomPosition = gridPositions[randomIndex];
-        gridPositions.RemoveAt(randomIndex);
-        return randomPosition;
+        for (int x = 0; x < columns; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                if ((x == 0 && y == 0) || (x == columns - 1 && y == rows - 1) || GetIfFoodLocation(x, y, foodLocations))
+                {
+                    continue;
+                }
+                else
+                {
+                    Instantiate(enemyTiles[Random.Range(0, enemyTiles.Count)], new Vector3(x, y, 0f), Quaternion.identity);
+                }
+            }
+        }
     }
 
-    void LayoutObjectAtRandom(List<GameObject> tileArray, int minimum, int maximum)
+    void LayoutFoodAtRandom(List<GameObject> foodTiles, int count)
     {
-        int objectCount = Random.Range(minimum, maximum + 1);
-        spawnedFood = objectCount;
-
-        for (int i = 0; i < objectCount; i++)
+        for (int i = 0; i < count; i++)
         {
-            Vector3 randomPosition = RandomPosition();
-            GameObject tileChoice = tileArray[Random.Range(0, tileArray.Count)];
-            Instantiate(tileChoice, randomPosition, Quaternion.identity);
+            Vector3 vec = new Vector3(Random.Range(1, columns - 1), Random.Range(1, rows - 1), 0f);
+
+            while (true)
+            {
+                vec = new Vector3(Random.Range(1, columns - 1), Random.Range(1, rows - 1), 0f);
+
+                if (GetIfFoodLocation(vec.x, vec.y, foodLocations) == false)
+                {
+                    break;
+                }
+            }
+            
+            
+            Instantiate(foodTiles[Random.Range(0, foodTiles.Count)], vec, Quaternion.identity);
+            foodLocations.Add(vec);
         }
     }
 
     public void SetupScene(int level)
     {
         BoardSetup();
-        InitialiseList();
-        LayoutObjectAtRandom(foodTiles, foodMin, foodMax);
-        int enemyCount = ((columns * rows) - 2) - spawnedFood;
-        LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
+        LayoutFoodAtRandom(foodTiles, Random.Range(1, foodMax));
+        LayoutEnemies(enemyTiles, foodLocations);
         Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+    }
+
+    private bool GetIfFoodLocation(float x, float y, List<Vector3> foodLocations)
+    {
+        bool result = false;
+
+        foreach (Vector3 location in foodLocations)
+        {
+            if (location.x == x && location.y == y)
+            {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
     }
 }
